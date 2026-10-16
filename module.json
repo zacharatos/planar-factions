@@ -1,0 +1,33 @@
+{
+  "id": "planar-factions",
+  "title": "Planar Factions",
+  "description": "Factions, renown, contacts and a ledger of debts and favours, for dnd5e. The party's attitude and renown with each group (the 2024 DMG renown rule: ranks, recognition, perks), each hero's membership and rank, contacts linked to actors, and who owes whom. A GM console, a read-only standing window for players, journal buttons for prep notes, and a journal page with the latest changes.",
+  "version": "0.1.0",
+  "authors": [
+    { "name": "rkeytech" }
+  ],
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "relationships": {
+    "systems": [
+      { "id": "dnd5e", "type": "system", "compatibility": { "minimum": "6.0.0" } }
+    ]
+  },
+  "esmodules": ["scripts/main.mjs"],
+  "socket": true,
+  "styles": ["styles/factions.css"],
+  "languages": [
+    { "lang": "en", "name": "English", "path": "lang/en.json" },
+    { "lang": "el", "name": "Ελληνικά", "path": "lang/el.json" }
+  ],
+  "url": "https://github.com/zacharatos/planar-factions",
+  "manifest": "https://github.com/zacharatos/planar-factions/releases/latest/download/module.json",
+  "download": "https://github.com/zacharatos/planar-factions/releases/download/v0.1.0/module.zip",
+  "bugs": "https://github.com/zacharatos/planar-factions/issues",
+  "readme": "https://github.com/zacharatos/planar-factions#readme",
+  "changelog": "https://github.com/zacharatos/planar-factions/blob/main/CHANGELOG.md",
+  "license": "https://github.com/zacharatos/planar-factions/blob/main/LICENSE",
+  "flags": {}
+}

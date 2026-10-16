@@ -1,0 +1,108 @@
+/* Planar Factions. Scoped to .planar-factions (console, standing window), .planar-factions-card (chat)
+   and .pf-ref (journal chips and buttons). */
+
+.planar-factions, .planar-factions-card, .pf-ref {
+  --pf-accent: #c9a24a;
+  --pf-hostile: #c8553d;
+  --pf-indifferent: #9a9a9a;
+  --pf-friendly: #5fa36a;
+  --pf-muted: color-mix(in srgb, currentColor 60%, transparent);
+  --pf-line: color-mix(in srgb, currentColor 18%, transparent);
+  --pf-fill: color-mix(in srgb, currentColor 6%, transparent);
+}
+
+.planar-factions .window-content { padding: 0; display: flex; flex-direction: column; }
+.planar-factions .pf-tabs { display: flex; gap: 2px; padding: 6px 8px 0; border-bottom: 1px solid var(--pf-line); flex: 0 0 auto; }
+.planar-factions .pf-tab { padding: 6px 12px; border-radius: 6px 6px 0 0; cursor: pointer; color: var(--pf-muted); }
+.planar-factions .pf-tab.active { color: inherit; background: var(--pf-fill); box-shadow: inset 0 -2px 0 var(--pf-accent); }
+.planar-factions .pf-count { display: inline-block; min-width: 1.4em; padding: 0 5px; border-radius: 9px; background: var(--pf-accent); color: #111; font-size: 0.8em; text-align: center; }
+.planar-factions .pf-bar { display: flex; gap: 6px; align-items: center; padding: 6px 10px; border-bottom: 1px solid var(--pf-line); flex: 0 0 auto; }
+.planar-factions .pf-bar .pf-field input[name=session] { width: 70px; flex: 0 0 auto; }
+.planar-factions .pf-body { flex: 1 1 auto; overflow-y: auto; padding: 10px 12px 16px; }
+.planar-factions .pf-banner { margin: 0; padding: 6px 12px; background: color-mix(in srgb, var(--pf-accent) 25%, transparent); font-size: 0.9em; }
+
+.planar-factions .pf-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; }
+.planar-factions .pf-row.small button, .planar-factions .pf-row.small select, .planar-factions .pf-row.small input { font-size: 0.85em; }
+.planar-factions .pf-row > button, .planar-factions header button { flex: 0 0 auto; width: auto; }
+.planar-factions button.icon { min-width: 28px; padding: 0 6px; }
+.planar-factions button.icon.on { color: var(--pf-accent); }
+.planar-factions button.primary { border-color: var(--pf-accent); box-shadow: 0 0 0 1px var(--pf-accent) inset; }
+.planar-factions button.neg { color: var(--pf-hostile); }
+.planar-factions .pf-grow { flex: 1 1 auto; }
+.planar-factions .pf-hint { color: var(--pf-muted); font-size: 0.9em; }
+.planar-factions .pf-empty { color: var(--pf-muted); text-align: center; padding: 24px 0; }
+.planar-factions .pf-sub { margin: 16px 0 6px; border-bottom: 1px solid var(--pf-line); font-size: 1.05em; }
+.planar-factions .pf-field { display: flex; align-items: center; gap: 6px; margin: 4px 0; }
+.planar-factions .pf-field.pf-col { flex-direction: column; align-items: stretch; gap: 2px; }
+.planar-factions .pf-field input, .planar-factions .pf-field select { flex: 1 1 auto; }
+.planar-factions .pf-num { width: 56px; flex: 0 0 auto; text-align: center; }
+.planar-factions .pf-short { width: 90px; flex: 0 0 auto; }
+.planar-factions textarea { width: 100%; resize: vertical; }
+
+.planar-factions .pf-card { border: 1px solid var(--pf-line); border-radius: 8px; padding: 8px 10px; margin: 8px 0; background: var(--pf-fill); }
+.planar-factions .pf-faction { border-left: 4px solid var(--pf-color, var(--pf-accent)); }
+.planar-factions .pf-card header { display: flex; align-items: center; gap: 8px; }
+.planar-factions .pf-fhead { cursor: pointer; }
+.planar-factions .pf-card header img { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; border: 1px solid var(--pf-line); flex: 0 0 auto; }
+.planar-factions .pf-noimg { width: 40px; text-align: center; font-size: 1.6em; color: var(--pf-muted); }
+.planar-factions .pf-who { flex: 1 1 auto; min-width: 0; }
+.planar-factions .pf-who small { color: var(--pf-muted); }
+.planar-factions .pf-who input.pf-title { font-weight: bold; }
+.planar-factions .pf-swatch, .pf-ref .pf-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
+.planar-factions .pf-caret { color: var(--pf-muted); }
+.planar-factions .pf-score, .pf-ref .pf-score { display: inline-block; min-width: 1.8em; padding: 0 6px; border-radius: 10px; border: 1px solid var(--pf-accent); color: var(--pf-accent); text-align: center; font-weight: bold; }
+.planar-factions .pf-chip, .planar-factions .pf-tag, .planar-factions .pf-status, .pf-ref .pf-status {
+  display: inline-block; padding: 0 7px; border-radius: 10px; font-size: 0.8em; border: 1px solid var(--pf-line); white-space: nowrap;
+}
+.planar-factions .pf-tag.ok { border-color: var(--pf-friendly); color: var(--pf-friendly); }
+.planar-factions .pf-att, .pf-ref .a-hostile, .pf-ref .a-indifferent, .pf-ref .a-friendly { white-space: nowrap; }
+.planar-factions .a-hostile, .pf-ref .a-hostile { color: var(--pf-hostile); }
+.planar-factions .a-indifferent, .pf-ref .a-indifferent { color: var(--pf-indifferent); }
+.planar-factions .a-friendly, .pf-ref .a-friendly { color: var(--pf-friendly); }
+.planar-factions .pf-motto { font-style: italic; margin: 4px 0; color: var(--pf-muted); }
+.planar-factions .pf-facts { display: flex; flex-wrap: wrap; gap: 12px; margin: 4px 0; font-size: 0.9em; }
+.planar-factions .pf-rel a { cursor: pointer; text-decoration: underline dotted; }
+.planar-factions .pf-rel.ally i { color: var(--pf-friendly); }
+.planar-factions .pf-rel.rival i { color: var(--pf-hostile); }
+.planar-factions .pf-block { margin: 8px 0; padding-top: 6px; border-top: 1px dashed var(--pf-line); }
+.planar-factions .pf-block h4 { margin: 0 0 4px; border: none; }
+.planar-factions .pf-award { font-size: 0.85em; }
+.planar-factions .pf-perks { margin: 4px 0; padding-left: 18px; font-size: 0.88em; }
+.planar-factions .pf-gmnotes { border-left: 3px solid var(--pf-accent); padding: 2px 8px; font-size: 0.9em; }
+.planar-factions details.pf-add > summary, .planar-factions details.pf-help > summary, .planar-factions details.pf-closed > summary { cursor: pointer; }
+.planar-factions .pf-drop { margin-top: 8px; padding: 10px; border: 1px dashed var(--pf-line); border-radius: 6px; text-align: center; color: var(--pf-muted); font-size: 0.9em; }
+.planar-factions .pf-who-pick label { display: inline-flex; align-items: center; gap: 3px; }
+
+.planar-factions .pf-grid { width: 100%; border-collapse: collapse; margin: 4px 0; }
+.planar-factions .pf-grid td, .planar-factions .pf-grid th { padding: 3px 6px; border-bottom: 1px solid var(--pf-line); vertical-align: top; text-align: left; }
+.planar-factions .pf-scorecell { white-space: nowrap; }
+.planar-factions .pf-list { list-style: none; margin: 6px 0; padding: 0; }
+
+.planar-factions .pf-entry .pf-kind { width: 20px; text-align: center; }
+.planar-factions .pf-entry.k-debt .pf-kind { color: var(--pf-hostile); }
+.planar-factions .pf-entry.k-favour .pf-kind { color: var(--pf-friendly); }
+.planar-factions .pf-entry input.pf-what { width: 100%; margin: 6px 0 2px; }
+.planar-factions .pf-entry:not(.s-open):not(.s-called) { opacity: 0.7; }
+.planar-factions .pf-weight { letter-spacing: 1px; color: var(--pf-accent); }
+.planar-factions .pf-status.s-called, .pf-ref .pf-status.s-called { border-color: var(--pf-accent); color: var(--pf-accent); }
+.planar-factions .pf-status.s-paid, .planar-factions .pf-status.s-forgiven, .pf-ref .pf-status.s-paid, .pf-ref .pf-status.s-forgiven { border-color: var(--pf-friendly); color: var(--pf-friendly); }
+.planar-factions .pf-status.s-broken, .pf-ref .pf-status.s-broken { border-color: var(--pf-hostile); color: var(--pf-hostile); }
+.planar-factions .pf-log { font-size: 0.8em; color: var(--pf-muted); margin: 2px 0 0; }
+
+.planar-factions .pf-heroes { list-style: none; margin: 6px 0 0; padding: 0; }
+.planar-factions .pf-heroes li { padding: 2px 0; }
+.planar-factions .pf-heroes li.me strong { color: var(--pf-accent); }
+
+/* Chat */
+.planar-factions-card p { margin: 2px 0; }
+.planar-factions-card .pf-reason, .planar-factions-card .pf-what { color: var(--pf-muted); font-style: italic; }
+.planar-factions-card .pf-rank { color: var(--pf-accent); font-weight: bold; }
+
+/* Journal chips and buttons */
+a.pf-ref, span.pf-ref { display: inline-flex; align-items: center; gap: 4px; padding: 0 6px; border-radius: 4px; border: 1px solid var(--pf-line); background: var(--pf-fill); white-space: nowrap; }
+a.pf-ref { cursor: pointer; }
+a.pf-ref-btn { border-color: var(--pf-accent); }
+a.pf-ref-btn.used { opacity: 0.65; }
+a.pf-ref-btn small { color: var(--pf-muted); }
+span.pf-ref-bad { border-style: dashed; color: var(--pf-hostile); }
+span.pf-ref-hidden { display: none; }

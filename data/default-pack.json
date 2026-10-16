@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "id": "default",
+  "name": {
+    "en": "Renown (generic)",
+    "el": "Φήμη (γενικό)"
+  },
+  "description": {
+    "en": "The renown ladder for any group: ranks at 1, 10, 25 and 50, perks at 3, 10 and 50, and a few generic missions. No factions: add your own, or import a pack.",
+    "el": "Η κλίμακα φήμης για οποιαδήποτε ομάδα: βαθμοί στο 1, 10, 25 και 50, προνόμια στο 3, 10 και 50, και μερικές γενικές αποστολές. Χωρίς φατρίες: πρόσθεσε τις δικές σου ή φέρε ένα πακέτο."
+  },
+  "ranks": [
+    {
+      "min": 1,
+      "name": {
+        "en": "Associate",
+        "el": "Συνεργάτης"
+      }
+    },
+    {
+      "min": 10,
+      "name": {
+        "en": "Trusted",
+        "el": "Έμπιστος"
+      }
+    },
+    {
+      "min": 25,
+      "name": {
+        "en": "Officer",
+        "el": "Αξιωματούχος"
+      }
+    },
+    {
+      "min": 50,
+      "name": {
+        "en": "Inner circle",
+        "el": "Στενός κύκλος"
+      }
+    }
+  ],
+  "perks": [
+    {
+      "min": 3,
+      "text": {
+        "en": "Members are Friendly by default; food and a bed in dire need; maybe a contact, a safe house or a discount.",
+        "el": "Τα μέλη είναι Friendly από προεπιλογή· φαγητό και κρεβάτι σε ανάγκη· ίσως μια επαφή, ένα ασφαλές σπίτι ή μια έκπτωση."
+      }
+    },
+    {
+      "min": 10,
+      "text": {
+        "en": "Access to potions and scrolls; a favour you can call in; backup on dangerous missions.",
+        "el": "Πρόσβαση σε φίλτρα και ειλητάρια· μια χάρη που μπορείς να ζητήσεις· ενισχύσεις σε επικίνδυνες αποστολές."
+      }
+    },
+    {
+      "min": 50,
+      "text": {
+        "en": "A small army on call, a Rare magic item, a helpful spellcaster, or the right to hand out missions.",
+        "el": "Ένας μικρός στρατός στη διάθεσή σου, ένα Rare μαγικό αντικείμενο, ένας πρόθυμος μάγος, ή το δικαίωμα να αναθέτεις αποστολές."
+      }
+    }
+  ],
+  "missions": [
+    {
+      "text": {
+        "en": "Carry a sealed message across dangerous ground, and don't read it.",
+        "el": "Πήγαινε ένα σφραγισμένο μήνυμα μέσα από επικίνδυνο τόπο, χωρίς να το διαβάσεις."
+      }
+    },
+    {
+      "text": {
+        "en": "Recover something the group lost.",
+        "el": "Φέρε πίσω κάτι που έχασε η ομάδα."
+      }
+    },
+    {
+      "text": {
+        "en": "Escort a newcomer for a day and keep them out of trouble.",
+        "el": "Συνόδευσε έναν καινούργιο για μια μέρα και κράτα τον μακριά από μπελάδες."
+      }
+    },
+    {
+      "text": {
+        "en": "Settle a quarrel between two members before it turns violent.",
+        "el": "Λύσε έναν καβγά ανάμεσα σε δύο μέλη πριν γίνει βίαιος."
+      }
+    },
+    {
+      "text": {
+        "en": "Collect a debt owed to the group, politely if you can.",
+        "el": "Μάζεψε ένα χρέος προς την ομάδα, ευγενικά αν γίνεται."
+      }
+    },
+    {
+      "text": {
+        "en": "Map a place nobody in the group has been.",
+        "el": "Χαρτογράφησε ένα μέρος όπου δεν έχει πάει κανείς από την ομάδα."
+      }
+    }
+  ],
+  "factions": []
+}

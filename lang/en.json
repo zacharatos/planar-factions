@@ -1,0 +1,294 @@
+{
+  "PLANAR_FACTIONS": {
+    "ToolTitle": "Factions, debts & favours",
+    "ToolTitlePlayer": "Our standing",
+    "Keybinding": {
+      "Open": "Open factions (GM) / standing (players)"
+    },
+    "Common": {
+      "Party": "the party",
+      "Member": "member"
+    },
+    "Attitude": {
+      "hostile": "Hostile",
+      "indifferent": "Indifferent",
+      "friendly": "Friendly"
+    },
+    "Kind": {
+      "debt": "Debt",
+      "favour": "Favour",
+      "debtLong": "The heroes owe",
+      "favourLong": "Owed to the heroes",
+      "faction": "Factions",
+      "minor": "Minor factions",
+      "power": "Powers",
+      "other": "Others"
+    },
+    "Status": {
+      "open": "Open",
+      "called": "Called in",
+      "paid": "Paid",
+      "broken": "Broken",
+      "forgiven": "Forgiven"
+    },
+    "Weight": {
+      "1": "Small",
+      "2": "Heavy",
+      "3": "Life and death"
+    },
+    "Award": {
+      "interests": "Advanced the group's interests (+1)",
+      "mission": "A mission the group gave them, or that directly helped it (+2)",
+      "great": "A hugely significant quest (+3)",
+      "offense": "An offense against the group (−1)"
+    },
+    "Console": {
+      "Title": "Factions, debts & favours",
+      "Tab": {
+        "factions": "Factions",
+        "contacts": "Contacts",
+        "ledger": "Ledger",
+        "history": "History",
+        "pack": "Pack"
+      },
+      "SessionPlaceholder": "S01",
+      "SessionHint": "The current session. Every change is stamped with it, so the session log can pick them up.",
+      "ReasonPlaceholder": "Why? (optional, used by the next change)",
+      "ReasonHint": "Type the reason before you click: it goes with the next change into the history and the chat.",
+      "Preview": "See what the players see",
+      "ShowPlayers": "Open the standing window on every player's screen",
+      "Search": "Search",
+      "Filter": {
+        "all": "All factions",
+        "known": "Known to the players",
+        "active": "With any standing"
+      },
+      "FactionsHint": "Click a faction to open it. The eye shows it to the players.",
+      "NoFactions": "No factions yet. Import a pack in the Pack tab, or add your own below.",
+      "NoMatch": "No faction matches.",
+      "KnownOn": "The players know this. Click to hide it.",
+      "KnownOff": "Hidden from the players. Click to show it.",
+      "PartyRenown": "Party renown",
+      "Recognized": "Recognized",
+      "RecognizedHint": "Renown {n}+: members are Friendly by default and help in dire need.",
+      "Heroes": "Heroes",
+      "Member": "Member",
+      "NotMember": "not a member",
+      "Renown": "Renown",
+      "Rank": "Rank",
+      "NextRank": "next: {name} at {n}",
+      "Downtime": "{n} days of downtime for the next point",
+      "LevelRenown": "level-based: {n}",
+      "LevelRenownHint": "The renown a character of this level would have after working with the group most of their career (DMG, level-based renown).",
+      "NoHeroes": "No player characters in the world.",
+      "Attitude": "Attitude",
+      "RollMission": "Roll a mission",
+      "DeleteFaction": "Delete this faction",
+      "DeleteFactionConfirm": "Delete this faction you made? Its standing stays in the history.",
+      "Notes": "Notes",
+      "AddFaction": "Add a faction",
+      "FactionName": "Name",
+      "FactionEpithet": "What people call them",
+      "Add": "Add",
+      "ContactName": "Name",
+      "NoFaction": "No faction",
+      "DropActor": "Or drop an actor here",
+      "Role": "Role",
+      "Faction": "Faction",
+      "Met": "Met",
+      "Offers": "What they offer",
+      "OffersPlaceholder": "what this contact can do for the heroes",
+      "OpenSheet": "Open the sheet",
+      "Delete": "Delete",
+      "DeleteContactConfirm": "Delete this contact? Ledger entries with them keep the name.",
+      "DeleteEntryConfirm": "Delete this entry from the ledger?",
+      "NoContacts": "No contacts yet.",
+      "AddEntry": "Add a debt or a favour",
+      "WithOther": "With… (type a name)",
+      "WithName": "Name, if not on the list",
+      "Who": "Who:",
+      "WhoHint": "(none ticked = the party)",
+      "What": "What is owed",
+      "Known": "The players know",
+      "KnownHint": "Untick for a debt only the GM knows about (someone thinks they're owed).",
+      "LedgerFilter": {
+        "open": "Open",
+        "all": "All",
+        "closed": "Closed"
+      },
+      "LedgerHint": "◆ small · ◆◆ heavy · ◆◆◆ life and death.",
+      "TheyAreOwed": "owed by {who}",
+      "TheyOwe": "owes {who}",
+      "To": {
+        "open": "Reopen",
+        "called": "Call in",
+        "paid": "Paid",
+        "broken": "Broken",
+        "forgiven": "Forgive"
+      },
+      "Due": "Due",
+      "EntryNotes": "Notes (GM only)",
+      "NoEntries": "Nothing here.",
+      "OpenPage": "Open the page",
+      "SyncPage": "Update the page",
+      "CopyMarkdown": "Copy as Markdown",
+      "PageHint": "The page is rebuilt a moment after every change. It is GM only, and with Planar Codex it exports with your notes."
+    },
+    "Standing": {
+      "Title": "Our standing",
+      "Tab": {
+        "factions": "Factions",
+        "contacts": "Contacts",
+        "ledger": "Debts & favours"
+      },
+      "Preview": "What the players see",
+      "NoFactions": "No faction knows you yet.",
+      "NoContacts": "No contacts yet.",
+      "NoEntries": "Nobody owes anybody. Yet.",
+      "NoOpen": "Nothing open.",
+      "Closed": "Settled ({n})",
+      "RecognizedHint": "Renown {n}+: the members know you and treat you as a friend.",
+      "HelpTitle": "How standing works",
+      "Help": "Attitude is how a group feels about you (Hostile, Indifferent, Friendly). Renown is how much it knows and respects you: it rises when you help the group and falls if you wrong it, never below 0. At {n}+ the members are Friendly by default. Members climb in rank as their renown grows, and each threshold brings perks."
+    },
+    "Pack": {
+      "Default": "The generic ladder shipped with the module (no factions).",
+      "Imported": "Imported pack: {name}",
+      "Counts": "{factions} factions · {contacts} contacts · {ledger} ledger entries · {missions} missions",
+      "Import": "Import pack",
+      "Export": "Export pack",
+      "Reset": "Remove the pack",
+      "ResetConfirm": "Remove the imported pack? The standing you recorded stays.",
+      "Backup": "Back up the state",
+      "Ranks": "Ranks (members)",
+      "Perks": "Perks",
+      "RanksHint": "A faction can set its own ranks and perks in the pack.",
+      "Custom": "Factions made in this world",
+      "Invalid": "The pack has {n} problems; nothing was imported. Details in the console (F12).",
+      "BadJSON": "That file isn't valid JSON.",
+      "Loaded": "Pack imported: {name}"
+    },
+    "Page": {
+      "Title": "Factions & Favours",
+      "Intro": "Written by Planar Factions. Edit in the console: this page is rebuilt after every change.",
+      "Standing": "Standing",
+      "Ledger": "Debts and favours",
+      "Contacts": "Contacts",
+      "History": "Latest changes",
+      "None": "—",
+      "Col": {
+        "faction": "Faction",
+        "attitude": "Attitude",
+        "party": "Party",
+        "heroes": "Heroes",
+        "known": "Known",
+        "contact": "Contact",
+        "offers": "Offers",
+        "kind": "Kind",
+        "with": "With",
+        "who": "Who",
+        "what": "What",
+        "weight": "Weight",
+        "status": "Status",
+        "session": "Session",
+        "date": "Date"
+      }
+    },
+    "History": {
+      "Renown": "{who}: renown with {faction} {from} → {to} ({delta})",
+      "Attitude": "{faction}: {from} → {to}",
+      "Revealed": "{faction} shown to the players",
+      "Hidden": "{faction} hidden from the players",
+      "Joined": "{who} joined {faction}",
+      "Left": "{who} left {faction}",
+      "Contact": "New contact: {name}",
+      "EntryAdded": "{kind} with {with}: {what}",
+      "EntryStatus": "{what}: {from} → {to}"
+    },
+    "Chat": {
+      "Speaker": "Factions",
+      "RenownUp": "{who}: renown with {faction} rises, {from} → {to}.",
+      "RenownDown": "{who}: renown with {faction} falls, {from} → {to}.",
+      "RankUp": "{who} is now {rank}.",
+      "Recognized": "The members of {faction} now know {who}.",
+      "Attitude": "{faction} is now {attitude} toward the party.",
+      "CalledDebt": "{with} calls in what the heroes owe.",
+      "CalledFavour": "The heroes call in what {with} owes them.",
+      "Status": {
+        "open": "The account with {with} is open again.",
+        "paid": "The account with {with} is settled.",
+        "broken": "The word given to {with} is broken.",
+        "forgiven": "The account with {with} is forgiven."
+      },
+      "Mission": "Mission",
+      "MissionFor": "A mission from {faction}"
+    },
+    "Enricher": {
+      "NoFaction": "No faction by that name.",
+      "NoHero": "No player character called {name}.",
+      "NoEntry": "No ledger entry with that id.",
+      "BadRenown": "Write it as @Renown[faction +2] or @Renown[faction -1 Name].",
+      "BadAttitude": "Write it as @Attitude[faction hostile|indifferent|friendly].",
+      "BadLedger": "Write it as @Debt[who-with Hero w2], then what is owed in curly braces.",
+      "Renown": "{delta} renown, {faction} ({who})",
+      "Attitude": "{faction}: {attitude}",
+      "Debt": "Debt to {with}",
+      "Favour": "Favour from {with}",
+      "Click": "Click to apply.",
+      "ClickLedger": "Click to add it to the ledger.",
+      "Used": "Applied on {date}. Click to apply again.",
+      "Again": "Already applied once. Again?",
+      "ConfirmTitle": "Planar Factions",
+      "KnownQuestion": "Do the players know about it?",
+      "AddKnown": "Add, the players know",
+      "AddSecret": "Add, GM only",
+      "Cancel": "Cancel",
+      "AlreadyAdded": "Already in the ledger."
+    },
+    "Notify": {
+      "OnlyGM": "Only the GM can open the factions console.",
+      "NoFaction": "No faction \"{id}\".",
+      "Renown": "{who}: {faction} {from} → {to}",
+      "Attitude": "{faction}: {attitude}",
+      "NeedName": "Give it a name first.",
+      "NeedWhat": "Write what is owed first.",
+      "NeedWith": "Pick who it's with, or type a name.",
+      "DropActor": "Drop an actor here.",
+      "ContactAdded": "Contact added: {name}",
+      "EntryAdded": "Added to the ledger.",
+      "Shown": "Opened on {n} players' screens.",
+      "NoPlayers": "No players are connected.",
+      "Synced": "Page updated.",
+      "Copied": "Copied to the clipboard."
+    },
+    "Settings": {
+      "track": {
+        "Name": "Track renown for",
+        "Hint": "The 2024 DMG lets you track renown per character, for the party as one, or both.",
+        "both": "The party and each hero",
+        "party": "The party only",
+        "heroes": "Each hero only"
+      },
+      "announce": {
+        "Name": "Chat announcements",
+        "Hint": "Where renown, attitude and ledger changes are posted. With \"players\", only things the players know are posted publicly.",
+        "gm": "To the GM only",
+        "players": "To everyone (known things only)",
+        "off": "Off"
+      },
+      "playerButton": {
+        "Name": "Toolbar button for players",
+        "Hint": "Players get a button in the Tokens toolbar that opens their standing window."
+      },
+      "textLanguage": {
+        "Name": "Pack language",
+        "Hint": "Language for faction names and other pack text.",
+        "Auto": "Each user's language"
+      },
+      "pageName": {
+        "Name": "Journal page name",
+        "Hint": "The GM-only page with the standing, the ledger and the latest changes."
+      }
+    }
+  }
+}
