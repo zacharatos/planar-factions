@@ -106,3 +106,7 @@ a.pf-ref-btn.used { opacity: 0.65; }
 a.pf-ref-btn small { color: var(--pf-muted); }
 span.pf-ref-bad { border-style: dashed; color: var(--pf-hostile); }
 span.pf-ref-hidden { display: none; }
+
+/* EN/ΕΛ: this user's language for the module */
+.planar-factions button.pf-lang { flex: 0 0 auto; width: auto; padding: 0 8px; font-weight: bold; }
+.planar-factions .pf-tabs .pf-lang { margin-left: auto; }

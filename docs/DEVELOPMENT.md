@@ -99,6 +99,8 @@ Reload the browser (F5) after each change. Use a second browser logged in as a p
 
 **Players**
 - The frame-eye button in the console opens the Standing window on every connected player's screen (toast says how many). The eye button shows the GM the same window with a "what the players see" banner.
+- EN/ΕΛ button (GM console, top right; players' Standing window, next to the tabs): the window, its title and faction names switch language for that user only; another user's window doesn't change. Settings → *My language for Planar Factions* shows the same choice.
+- With the GM on EN and the world default on Greek: change renown, an attitude and a ledger status: the chat cards and the «Factions & Favours» page stay in Greek.
 
 ## Changing things
 

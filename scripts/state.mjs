@@ -2,7 +2,7 @@
 // Every client reads; only the active GM's client writes, one write at a time.
 import { MODULE_ID, DEFAULT_PACK_PATH } from "./constants.mjs";
 import { setting, setSetting } from "./settings.mjs";
-import { validatePack, mergePacks, normalizeState, seedFromPack, localText, buildView, standingOf } from "./util.mjs";
+import { validatePack, mergePacks, normalizeState, seedFromPack, localText, buildView, standingOf, pickLanguage } from "./util.mjs";
 
 const clone = v => foundry.utils.deepClone(v);
 let defaultPack = null;
@@ -35,10 +35,21 @@ export const factionDef = id => defs().factions.find(f => f.id === id) ?? null;
 /** The standing with one faction right now. */
 export const standingFor = def => standingOf(state(), def);
 
-/** Language for pack text: the setting, or this client's language. */
-export function textLang() {
-  const s = setting("textLanguage");
-  return s && s !== "auto" ? s : (game.i18n.lang === "el" ? "el" : "en");
+/** While the shared journal page is written, everything is in the world's language, not the GM's own. */
+let forced = null;
+
+/** This user's language for the module (windows and pack text): their choice, the world default, or Foundry's. */
+export const textLang = () => forced ?? pickLanguage(setting("language"), setting("textLanguage"), game.i18n.lang);
+/** The world's language (the shared page): the world default, or Foundry's. */
+export const worldLang = () => pickLanguage(null, setting("textLanguage"), game.i18n.lang);
+/** The EN/ΕΛ button: switch this user's language. */
+export const toggleLanguage = () => setSetting("language", textLang() === "el" ? "en" : "el");
+
+/** Run fn (synchronous) with the module's text in the world's language. */
+export function inWorldLanguage(fn) {
+  const prev = forced;
+  forced = worldLang();
+  try { return fn(); } finally { forced = prev; }
 }
 export const local = value => localText(value, textLang());
 

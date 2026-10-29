@@ -6,7 +6,7 @@ import { setting, setSetting } from "./settings.mjs";
 import {
   escapeHTML as esc, ATTITUDES, LEDGER_KINDS, LEDGER_STATUS, WEIGHTS, AWARDS, isOpenEntry, levelRenown, fold, localText, RECOGNITION
 } from "./util.mjs";
-import { state, defs, view, heroes, importedPack, importPack, resetPack, local, textLang, serial } from "./state.mjs";
+import { state, defs, view, heroes, importedPack, importPack, resetPack, local, textLang, toggleLanguage, serial } from "./state.mjs";
 import * as act from "./actions.mjs";
 import { markdown, page, syncPage, historyLine } from "./page.mjs";
 import { showToPlayers } from "./rpc.mjs";
@@ -77,7 +77,11 @@ export class FactionsConsole extends ApplicationV2 {
     if (body) body.scrollTop = scroll;
   }
 
+  /** In this user's language (Foundry's own title would follow Foundry's language). */
+  get title() { return t("Console.Title"); }
+
   _onRender() {
+    if (this.window?.title) this.window.title.textContent = this.title;
     if (this.#focus) {
       const el = this.element.querySelector(`[data-card="${CSS.escape(this.#focus)}"]`);
       el?.scrollIntoView?.({ block: "nearest" });
@@ -102,7 +106,8 @@ export class FactionsConsole extends ApplicationV2 {
       <label class="pf-field" ${tip(t("Console.SessionHint"))}><i class="fa-solid fa-calendar-day"></i> <input type="text" name="session" value="${esc(setting("session"))}" placeholder="${esc(t("Console.SessionPlaceholder"))}"></label>
       <label class="pf-field pf-grow" ${tip(t("Console.ReasonHint"))}><i class="fa-solid fa-feather"></i> <input type="text" name="reason" value="${esc(this.#reason)}" placeholder="${esc(t("Console.ReasonPlaceholder"))}"></label>
       ${btn("preview", "fa-eye", "", "", "icon", tip(t("Console.Preview")))}
-      ${btn("show-players", "fa-users-viewfinder", "", "", "icon", tip(t("Console.ShowPlayers")))}</div>`;
+      ${btn("show-players", "fa-users-viewfinder", "", "", "icon", tip(t("Console.ShowPlayers")))}
+      ${btn("lang", "fa-language", textLang() === "el" ? "ΕΛ" : "EN", "", "pf-lang", tip(t("Console.Language")))}</div>`;
     const body = { factions: () => this.#factions(v), contacts: () => this.#contacts(v), ledger: () => this.#ledger(v), history: () => this.#history(), pack: () => this.#pack(v) }[this.#tab]();
     return `<nav class="pf-tabs">${tabs}</nav>${bar}<section class="pf-body">${body}</section>`;
   }
@@ -431,6 +436,7 @@ export class FactionsConsole extends ApplicationV2 {
         case "entry-delete":
           if (await DialogV2.confirm({ window: { title: t("Console.Delete") }, content: `<p>${esc(t("Console.DeleteEntryConfirm"))}</p>` })) await act.entryDelete(el.dataset.entry);
           break;
+        case "lang": return toggleLanguage();
         case "preview": {
           const { StandingWindow } = await import("./standing.mjs");
           StandingWindow.open({ preview: true });

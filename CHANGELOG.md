@@ -2,6 +2,17 @@
 
 All notable changes to this module. The format follows [Keep a Changelog](https://keepachangelog.com/); versions follow [SemVer](https://semver.org/).
 
+## [0.2.0]
+
+### Added
+- **Each user picks the module's language (EN/ΕΛ).** A button in the GM console and in the players' Standing window switches that window, its title and the pack text (faction names, ranks, perks) between English and Greek for that user only. The choice is also in the module settings (*My language for Planar Factions*); "The world's default" follows the world setting.
+
+### Changed
+- *Pack language* is now **Default language**: the module's windows, faction names and the journal page for everyone who hasn't chosen one ("Same as Foundry" by default).
+- Shared output stays in the world's language: chat cards and the «Factions & Favours» page don't follow the GM's own EN/ΕΛ choice.
+- The manifest recommends Planar Codex (the page becomes a Codex note).
+- CI and release workflows use `actions/checkout@v5` and `actions/setup-node@v5`; CI runs with read-only repository permissions.
+
 ## [0.1.0]
 
 First release.

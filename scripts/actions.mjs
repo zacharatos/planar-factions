@@ -8,7 +8,7 @@ import {
   addEntry, updateEntry, setEntryStatus, removeEntry, addCustomFaction, removeCustomFaction,
   findFaction, findContact, findHero, withLabel, missionsOf, escapeHTML as esc, localText
 } from "./util.mjs";
-import { mutate, ctx, defs, factionDef, state, heroes, local, textLang } from "./state.mjs";
+import { mutate, ctx, defs, factionDef, state, heroes, local, textLang, inWorldLanguage } from "./state.mjs";
 
 const need = id => {
   const def = typeof id === "object" ? id : factionDef(id);
@@ -26,23 +26,28 @@ async function post(html, { publicMsg = false } = {}) {
   const toAll = publicMsg && mode === "players";
   return ChatMessage.create({
     content: `<div class="planar-factions-card">${html}</div>`,
-    speaker: { alias: t("Chat.Speaker") },
+    speaker: { alias: inWorldLanguage(() => t("Chat.Speaker")) },
     whisper: toAll ? [] : game.users.filter(u => u.isGM).map(u => u.id)
   });
 }
 
 function announceRenown(def, target, res, reason) {
-  const name = local(def.name);
   const known = state().factions[def.id]?.known ?? def.known;
   const delta = res.after - res.before;
   if (!delta) return;
+  info("Notify.Renown", { who: targetLabel(target), faction: local(def.name), from: res.before, to: res.after });
+  // The chat card is shared: written in the world's language, not the GM's own choice.
+  post(inWorldLanguage(() => renownCard(def, target, res, reason, delta)), { publicMsg: known });
+}
+
+function renownCard(def, target, res, reason, delta) {
+  const name = local(def.name);
   const line = t(delta > 0 ? "Chat.RenownUp" : "Chat.RenownDown", { who: targetLabel(target), faction: name, from: res.before, to: res.after });
-  info("Notify.Renown", { who: targetLabel(target), faction: name, from: res.before, to: res.after });
   let html = `<p><i class="fa-solid fa-landmark-flag"></i> ${esc(line)}</p>${reason ? `<p class="pf-reason">${esc(reason)}</p>` : ""}`;
   const isMember = target !== "party" && !!state().factions[def.id]?.heroes?.[target]?.member;
   if (res.rankUp && isMember) html += `<p class="pf-rank"><i class="fa-solid fa-award"></i> ${esc(t("Chat.RankUp", { who: targetLabel(target), rank: local(res.rankUp.name) }))}</p>`;
   if (res.recognizedNow) html += `<p class="pf-rank"><i class="fa-solid fa-handshake"></i> ${esc(t("Chat.Recognized", { who: targetLabel(target), faction: name }))}</p>`;
-  post(html, { publicMsg: known });
+  return html;
 }
 
 /* ---------------- factions ---------------- */
@@ -68,7 +73,7 @@ export async function attitude(factionId, value, { reason = "", source = "" } = 
   if (entry) {
     const known = state().factions[def.id]?.known;
     info("Notify.Attitude", { faction: local(def.name), attitude: t(`Attitude.${value}`) });
-    post(`<p><i class="fa-solid fa-people-group"></i> ${esc(t("Chat.Attitude", { faction: local(def.name), attitude: t(`Attitude.${value}`) }))}</p>${reason ? `<p class="pf-reason">${esc(reason)}</p>` : ""}`, { publicMsg: known });
+    post(inWorldLanguage(() => `<p><i class="fa-solid fa-people-group"></i> ${esc(t("Chat.Attitude", { faction: local(def.name), attitude: t(`Attitude.${value}`) }))}</p>${reason ? `<p class="pf-reason">${esc(reason)}</p>` : ""}`), { publicMsg: known });
   }
   return entry;
 }
@@ -115,10 +120,13 @@ export async function entryStatus(id, status, { reason = "" } = {}) {
   const st = state();
   const e = st.ledger.find(x => x.id === id);
   if (e) {
-    const lang = textLang();
-    const withName = withLabel(e, defs(), st, lang);
-    const key = status === "called" ? (e.kind === "debt" ? "Chat.CalledDebt" : "Chat.CalledFavour") : `Chat.Status.${status}`;
-    post(`<p><i class="fa-solid fa-scale-balanced"></i> ${esc(t(key, { with: withName }))}</p><p class="pf-what">${esc(localText(e.what, lang))}</p>`, { publicMsg: e.known });
+    const html = inWorldLanguage(() => {
+      const lang = textLang();
+      const withName = withLabel(e, defs(), st, lang);
+      const key = status === "called" ? (e.kind === "debt" ? "Chat.CalledDebt" : "Chat.CalledFavour") : `Chat.Status.${status}`;
+      return `<p><i class="fa-solid fa-scale-balanced"></i> ${esc(t(key, { with: withName }))}</p><p class="pf-what">${esc(localText(e.what, lang))}</p>`;
+    });
+    post(html, { publicMsg: e.known });
   }
   return h;
 }

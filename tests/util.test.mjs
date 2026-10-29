@@ -293,3 +293,22 @@ test("escapeHTML and localText", () => {
   assert.equal(localText("plain", "el"), "plain");
   assert.equal(localText(null), "");
 });
+
+test("each user's language: their choice, else the world default, else Foundry's", async () => {
+  const { pickLanguage, lookup, fill } = await import("../scripts/util.mjs");
+  assert.equal(pickLanguage("el", "en", "en"), "el");
+  assert.equal(pickLanguage("world", "el", "en"), "el");
+  assert.equal(pickLanguage("world", "auto", "el"), "el");
+  assert.equal(pickLanguage(null, "auto", "fr"), "en");
+  assert.equal(lookup({ A: { B: "x" } }, "A.B"), "x");
+  assert.equal(lookup({ A: { B: "x" } }, "A"), undefined);
+  assert.equal(fill("{who} +{n} {missing}", { who: "Ρέα", n: 2 }), "Ρέα +2 {missing}");
+});
+
+test("both languages have the EN/ΕΛ strings", async () => {
+  const { readFileSync } = await import("node:fs");
+  for (const lang of ["en", "el"]) {
+    const d = JSON.parse(readFileSync(new URL(`../lang/${lang}.json`, import.meta.url), "utf8")).PLANAR_FACTIONS;
+    assert.ok(d.Console.Language && d.Settings.language.Name && d.Settings.language.World, lang);
+  }
+});

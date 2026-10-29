@@ -132,7 +132,8 @@
       "OpenPage": "Open the page",
       "SyncPage": "Update the page",
       "CopyMarkdown": "Copy as Markdown",
-      "PageHint": "The page is rebuilt a moment after every change. It is GM only, and with Planar Codex it exports with your notes."
+      "PageHint": "The page is rebuilt a moment after every change. It is GM only, and with Planar Codex it exports with your notes.",
+      "Language": "Switch this window between English and Greek (only for you)"
     },
     "Standing": {
       "Title": "Our standing",
@@ -281,13 +282,18 @@
         "Hint": "Players get a button in the Tokens toolbar that opens their standing window."
       },
       "textLanguage": {
-        "Name": "Pack language",
-        "Hint": "Language for faction names and other pack text.",
-        "Auto": "Each user's language"
+        "Name": "Default language",
+        "Hint": "The language of the module's windows, faction names and the journal page, for everyone who hasn't chosen one.",
+        "Auto": "Same as Foundry"
       },
       "pageName": {
         "Name": "Journal page name",
         "Hint": "The GM-only page with the standing, the ledger and the latest changes."
+      },
+      "language": {
+        "Name": "My language for Planar Factions",
+        "Hint": "Only for you, without changing Foundry's language.",
+        "World": "The world's default"
       }
     }
   }

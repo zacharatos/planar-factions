@@ -13,6 +13,9 @@
   "relationships": {
     "systems": [
       { "id": "dnd5e", "type": "system", "compatibility": { "minimum": "6.0.0" } }
+    ],
+    "recommends": [
+      { "id": "planar-codex", "type": "module", "reason": "The «Factions & Favours» page becomes a Codex note that exports to your vault." }
     ]
   },
   "esmodules": ["scripts/main.mjs"],

@@ -1,6 +1,7 @@
 import { MODULE_ID } from "./constants.mjs";
 import { registerSettings } from "./settings.mjs";
-import { loadDefaultPack, seed, onWrite, state, defs, view, importedPack } from "./state.mjs";
+import { loadDefaultPack, seed, onWrite, state, defs, view, importedPack, textLang } from "./state.mjs";
+import { loadDictionaries, setLanguageSource } from "./i18n.mjs";
 import { registerSocket, showToPlayers } from "./rpc.mjs";
 import { FactionsConsole } from "./console.mjs";
 import { StandingWindow } from "./standing.mjs";
@@ -17,7 +18,7 @@ const refresh = () => {
 const openForMe = () => (game.user.isGM ? FactionsConsole.open() : StandingWindow.open());
 
 Hooks.once("init", () => {
-  registerSettings({ onState: refresh });
+  registerSettings({ onState: what => { refresh(); if (what === "language") ui.controls?.render?.(); } });
   registerEnrichers();
   game.keybindings.register(MODULE_ID, "open", {
     name: "PLANAR_FACTIONS.Keybinding.Open",
@@ -27,7 +28,8 @@ Hooks.once("init", () => {
 });
 
 Hooks.once("ready", async () => {
-  await loadDefaultPack();
+  setLanguageSource(textLang);
+  await Promise.all([loadDefaultPack(), loadDictionaries()]);
   registerSocket(() => StandingWindow.open());
   registerClicks();
   onWrite(schedulePageSync);

@@ -5,7 +5,7 @@ import { PALETTE, ATTITUDE_ICON } from "./constants.mjs";
 import { t } from "./i18n.mjs";
 import { setting } from "./settings.mjs";
 import { escapeHTML as esc, isOpenEntry, RECOGNITION } from "./util.mjs";
-import { view, defs } from "./state.mjs";
+import { view, defs, textLang, toggleLanguage } from "./state.mjs";
 
 const { ApplicationV2 } = foundry.applications.api;
 const TABS = ["factions", "contacts", "ledger"];
@@ -48,7 +48,11 @@ export class StandingWindow extends ApplicationV2 {
   async _renderHTML() { return this.#html(); }
   _replaceHTML(result, content) { content.innerHTML = result; }
 
+  /** In this user's language (Foundry's own title would follow Foundry's language). */
+  get title() { return t("Standing.Title"); }
+
   _onRender() {
+    if (this.window?.title) this.window.title.textContent = this.title;
     if (this.#focus) {
       this.element.querySelector(`[data-card="${CSS.escape(this.#focus)}"]`)?.scrollIntoView?.({ block: "nearest" });
       this.#focus = null;
@@ -56,6 +60,7 @@ export class StandingWindow extends ApplicationV2 {
     if (this.#boundTo === this.element) return;
     this.#boundTo = this.element;
     this.element.addEventListener("click", ev => {
+      if (ev.target.closest("[data-act=lang]")) return toggleLanguage();
       const tab = ev.target.closest("[data-tab]");
       if (tab) { this.#tab = tab.dataset.tab; this.render(); }
     });
@@ -67,7 +72,8 @@ export class StandingWindow extends ApplicationV2 {
     const tabs = TABS.map(k => `<a class="pf-tab ${k === this.#tab ? "active" : ""}" data-tab="${k}"><i class="fa-solid ${TAB_ICONS[k]}"></i> ${esc(t(`Standing.Tab.${k}`))}${counts[k] ? ` <span class="pf-count">${counts[k]}</span>` : ""}</a>`).join("");
     const banner = this.#preview && game.user.isGM ? `<p class="pf-banner"><i class="fa-solid fa-eye"></i> ${esc(t("Standing.Preview"))}</p>` : "";
     const body = { factions: () => this.#factions(v), contacts: () => this.#contacts(v), ledger: () => this.#ledger(v) }[this.#tab]();
-    return `${banner}<nav class="pf-tabs">${tabs}</nav><section class="pf-body">${body}</section>`;
+    const lang = `<button type="button" class="pf-lang" data-act="lang" data-tooltip="${esc(t("Console.Language"))}"><i class="fa-solid fa-language"></i> ${textLang() === "el" ? "ΕΛ" : "EN"}</button>`;
+    return `${banner}<nav class="pf-tabs">${tabs}${lang}</nav><section class="pf-body">${body}</section>`;
   }
 
   #factions(v) {

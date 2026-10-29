@@ -40,6 +40,28 @@ export function escapeHTML(s) {
 }
 
 /** Text in the wanted language: plain strings pass through; {en, el} objects fall back to en, then anything. */
+/** The languages the module ships (lang/en.json, lang/el.json). */
+export const LANGUAGES = ["en", "el"];
+
+/** A dotted key from a nested dictionary ("Console.Tab.ledger"), or undefined. */
+export function lookup(dict, key) {
+  const v = String(key).split(".").reduce((o, k) => (o && typeof o === "object" ? o[k] : undefined), dict);
+  return typeof v === "string" ? v : undefined;
+}
+
+/** Fill {placeholders}; unknown ones stay as written. */
+export function fill(text, data) {
+  if (!data) return text;
+  return String(text).replace(/\{(\w+)\}/g, (m, k) => (k in data && data[k] != null ? String(data[k]) : m));
+}
+
+/** The language to use: the user's choice, else the world default, else Foundry's language (Greek or English). */
+export function pickLanguage(user, world, foundry) {
+  if (LANGUAGES.includes(user)) return user;
+  if (LANGUAGES.includes(world)) return world;
+  return foundry === "el" ? "el" : "en";
+}
+
 export function localText(value, lang = "en") {
   if (value == null) return "";
   if (typeof value === "string") return value;

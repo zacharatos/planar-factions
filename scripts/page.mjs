@@ -4,7 +4,7 @@ import { MODULE_ID, PAGE_FOLDER } from "./constants.mjs";
 import { t } from "./i18n.mjs";
 import { setting, setSetting } from "./settings.mjs";
 import { pageMarkdown, ATTITUDES, LEDGER_KINDS, LEDGER_STATUS, withLabel, localText } from "./util.mjs";
-import { serial, view, state, defs, textLang } from "./state.mjs";
+import { serial, view, state, defs, textLang, inWorldLanguage } from "./state.mjs";
 
 /** One history entry as a sentence. */
 export function historyLine(h) {
@@ -31,7 +31,12 @@ export function historyLine(h) {
   }
 }
 
+/** The page's Markdown, in the world's language (it is shared, so not the GM's own choice). */
 export function markdown() {
+  return inWorldLanguage(buildMarkdown);
+}
+
+function buildMarkdown() {
   const L = {
     title: setting("pageName") || t("Page.Title"),
     intro: t("Page.Intro"),

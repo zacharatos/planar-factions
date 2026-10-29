@@ -28,6 +28,13 @@ export function registerSettings({ onState } = {}) {
   world("textLanguage", String, "auto", { choices: {
     auto: "PLANAR_FACTIONS.Settings.textLanguage.Auto", en: "English", el: "Ελληνικά"
   }, onChange: () => onState?.("settings") });
+  // Each user's own choice (the EN/ΕΛ button in the module's windows). "world" follows the world default.
+  game.settings.register(MODULE_ID, "language", {
+    name: "PLANAR_FACTIONS.Settings.language.Name", hint: "PLANAR_FACTIONS.Settings.language.Hint",
+    scope: "client", config: true, type: String, default: "world",
+    choices: { world: "PLANAR_FACTIONS.Settings.language.World", en: "English", el: "Ελληνικά" },
+    onChange: () => onState?.("language")
+  });
   world("pageName", String, "Factions & Favours");
 }
 
